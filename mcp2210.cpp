@@ -38,12 +38,6 @@ int SendUSBCmd(hid_device *handle, byte *cmdBuf, byte *responseBuf) {
     r = hid_read(handle, responseBuf, 64);
     if (r < 0) return ERROR_UNABLE_TO_READ_FROM_DEVICE;
 
-    while (r == 0) {
-        r = hid_read(handle, responseBuf, 64);
-        if (r < 0) return ERROR_UNABLE_TO_READ_FROM_DEVICE;
-        usleep(1000);
-    }
-
     return responseBuf[1];
 }
 
